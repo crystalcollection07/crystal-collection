@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Crystal Collection</title>
+    <meta
+      name="description"
+      content="Reach out for crystal catalogue enquiries by phone, WhatsApp, or a simple contact form."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="contact">
+    <div class="page-shell">
+      <header class="site-header is-visible" data-header>
+        <a class="brand" href="index.html">Crystal Collection</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="categories.html">Catalogue</a>
+          <a href="highlights.html">Highlights</a>
+          <a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+      </header>
+
+      <main class="inner-page contact-page">
+        <section class="page-intro reveal">
+          <p class="eyebrow">Contact</p>
+          <h1>Send an enquiry</h1>
+          <p>
+            Reach out for product availability, category details, and curated
+            crystal recommendations.
+          </p>
+        </section>
+
+        <section class="contact-layout">
+          <div class="contact-card reveal">
+            <h2>Get in touch</h2>
+            <p class="contact-label">Phone</p>
+            <a class="contact-link" href="tel:9385381912">9385381912</a>
+            <p class="contact-label">WhatsApp</p>
+            <a
+              class="button button-primary button-whatsapp"
+              href="https://wa.me/919385381912"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Chat on WhatsApp</a
+            >
+          </div>
+
+          <form class="enquiry-form reveal reveal-delay" data-enquiry-form>
+            <h2>Simple enquiry form</h2>
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" placeholder="Your phone number" required />
+            </label>
+            <label>
+              Interest
+              <select name="interest" required>
+                <option value="">Select a category</option>
+                <option>Bracelets</option>
+                <option>Gemstones</option>
+                <option>Gem Trees</option>
+                <option>Pyramids</option>
+                <option>Crystal Balls</option>
+                <option>Navratna Sets</option>
+                <option>Pencils</option>
+                <option>Vastu Items</option>
+              </select>
+            </label>
+            <label>
+              Message
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Tell us what you would like to know"
+                required
+              ></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send Enquiry</button>
+            <p class="form-note" data-form-note aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
