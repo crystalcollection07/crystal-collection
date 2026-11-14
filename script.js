@@ -309,20 +309,25 @@ const gemstoneBracelets = [
 ].map(([name, filename]) => ({
   name,
   filename,
-  image: `assets/gemstone-cards/${filename}`,
+  image: `assets/assets/gemstone%20bracelets/${encodeURIComponent(filename)}`,
+  fallbackImage: `assets/gemstone-cards/${encodeURIComponent(filename)}`,
+  secondFallbackImage: `assets/gemstones/${encodeURIComponent(filename)}`,
   description: `${name} gemstone bracelet. Explore the card image for its traditional crystal associations and intended positive qualities.`
 }));
 
 const healthBracelets = [
-  "Career Success",
-  "Fertility",
-  "Sugar Control",
-  "Student Success",
-  "Thyroid",
-  "Back Pain",
-  "Weight Loss",
-  "Blood Pressure"
-];
+  ["Career Success", "career-success.jpg"],
+  ["Fertility", "fertility.jpg"],
+  ["Sugar Control", "sugar-control.jpg"],
+  ["Student Success", "student-success.jpg"],
+  ["Thyroid", "thyroid.jpg"],
+  ["Back Pain", "back-pain.jpg"],
+  ["Weight Loss", "weight-loss.jpg"],
+  ["Blood Pressure", "blood-pressure.jpg"]
+].map(([name, filename]) => ({
+  name,
+  image: `assets/health-bracelets/${filename}`
+}));
 
 function setupPageTransition() {
   window.addEventListener("load", () => {
@@ -649,7 +654,7 @@ function renderGemstoneBracelets(grid) {
         <article class="gemstone-card reveal" style="transition-delay:${Math.min(index * 25, 260)}ms">
           <button class="gemstone-button" type="button" data-gemstone-name="${stone.name}">
             <div class="gemstone-image-wrap">
-              <img src="${stone.image}" alt="${stone.name} gemstone bracelet" loading="lazy" />
+              <img src="${stone.image}" alt="${stone.name} gemstone bracelet" loading="lazy" onerror="this.onerror=null; this.src='${stone.fallbackImage}'; this.onerror=()=>{this.onerror=null; this.src='${stone.secondFallbackImage}';};" />
             </div>
             <h3>${stone.name}</h3>
             <span>View bracelet</span>
@@ -664,13 +669,14 @@ function renderHealthBracelets(grid) {
   grid.className = "gemstone-grid health-grid";
   grid.innerHTML = healthBracelets
     .map(
-      (name, index) => `
+      (bracelet, index) => `
         <article class="gemstone-card health-card reveal" style="transition-delay:${Math.min(index * 25, 220)}ms">
           <div class="gemstone-button health-button">
-            <div class="gemstone-image-wrap health-image-placeholder" aria-label="Image coming soon">
+            <div class="gemstone-image-wrap health-image-placeholder" aria-label="${bracelet.name} image">
+              <img src="${bracelet.image}" alt="${bracelet.name} health bracelet" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
               <span>Image coming soon</span>
             </div>
-            <h3>${name}</h3>
+            <h3>${bracelet.name}</h3>
             <span>Health Bracelet</span>
           </div>
         </article>
@@ -770,6 +776,13 @@ function setupModal() {
     panel.classList.add("zodiac-modal-panel");
     image.src = item.image;
     image.alt = `${item.name} gemstone bracelet card`;
+    image.onerror = () => {
+      image.src = item.fallbackImage;
+      image.onerror = () => {
+        image.onerror = null;
+        image.src = item.secondFallbackImage;
+      };
+    };
     image.style.display = "block";
     title.textContent = item.name;
     category.textContent = "Gemstone Bracelet";
